@@ -4,6 +4,8 @@ Dl4J Implementation of Tiny-Yolov2
 * Project based on [DL4J-example](https://github.com/eclipse/deeplearning4j-examples/tree/master/dl4j-examples/src/main/java/org/deeplearning4j/examples/advanced/modelling/objectdetection)
 
 (click for full video)
+
+
 [![Watch the video](https://i.ibb.co/PFX33NV/index.gif)](https://youtu.be/CMewb5FUtt4)
 
 
