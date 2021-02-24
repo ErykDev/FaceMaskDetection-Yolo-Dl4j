@@ -25,3 +25,4 @@ hs_err_pid*
 .idea/
 build/
 /src/main/java/org/fr4j/DataRecorder.java
+model.zip

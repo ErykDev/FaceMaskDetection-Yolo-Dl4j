@@ -102,7 +102,7 @@ public class Display implements Runnable {
                     }
                     putText(image, "FPS:" + String.format("%.2f", fps), new Point(10,15), FONT_HERSHEY_DUPLEX, 0.5, Scalar.GRAY);
 
-                    fps = 1000000000.0 / (System.nanoTime() - lastTime); //one second(nano) divided by amount of time it takes for one frame to finish
+                    fps = 1E9 / (System.nanoTime() - lastTime); //one second(nano) divided by amount of time it takes for one frame to finish
 
                     frame.showImage(converter.convert(image));
 
