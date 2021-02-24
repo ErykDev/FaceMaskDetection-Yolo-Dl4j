@@ -21,8 +21,6 @@ Dl4J Implementation of Tiny-Yolov2
 
 If model.zip isn't available in project then root directory then the training will start.
 
-![Training](https://i.ibb.co/FJwQgvW/Score.png)
-
 ### Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
