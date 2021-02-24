@@ -1,0 +1,11 @@
+Example set:
+https://drive.google.com/file/d/1DgoBiR5kfscCUKrJJUxgYRPGt5e43dhh/view?usp=sharing
+
+Download this zip and unpack in into this directory
+
+Example set consist of :
+
+https://public.roboflow.com/object-detection/mask-wearing
+and my photos
+
+
