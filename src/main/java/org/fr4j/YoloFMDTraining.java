@@ -51,8 +51,8 @@ public class YoloFMDTraining {
 
         log.info("Load DataSets...");
 
-        FileSplit trainData = new FileSplit(trainDir, new String[]{".png"}, rng);
-        FileSplit evalData = new FileSplit(evalDir, new String[]{".png"}, rng);
+        FileSplit trainData = new FileSplit(trainDir, new String[]{".png", ".jpg"}, rng);
+        FileSplit evalData = new FileSplit(evalDir, new String[]{".png", ".jpg"}, rng);
 
         ImageObjectLabelProvider trainLabelProvider = new LabelProvider(trainDir);
         ImageObjectLabelProvider evalLabelProvider = new LabelProvider(evalDir);

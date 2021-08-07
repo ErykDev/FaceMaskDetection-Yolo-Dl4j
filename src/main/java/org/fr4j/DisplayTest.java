@@ -50,7 +50,7 @@ public class DisplayTest {
 
         log.info("Load DataSet...");
 
-        FileSplit testData = new FileSplit(testDir, new String[]{".png"}, rng);
+        FileSplit testData = new FileSplit(testDir, new String[]{".png", ".jpg"}, rng);
 
         ImageObjectLabelProvider labelProvider = new LabelProvider(testDir);
 
