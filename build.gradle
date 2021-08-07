@@ -1,6 +1,7 @@
 buildscript {
     ext {
         dl4j_use_cuda = false
+        dl4j_use_avx2 = false
         dl4j_version = "1.0.0-beta7"
         springBootVersion = '2.4.1.RELEASE'
         cuda_version = "10.0"
@@ -35,11 +36,6 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation("org.springframework.boot:spring-boot-starter-logging")
 
-    implementation "org.openjfx:javafx-base:11:${platform}"
-    implementation "org.openjfx:javafx-graphics:11:${platform}"
-    implementation "org.openjfx:javafx-controls:11:${platform}"
-    implementation "org.openjfx:javafx-fxml:11:${platform}"
-
     implementation "org.deeplearning4j:deeplearning4j-core:${dl4j_version}"
     // https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-zoo
     implementation group: 'org.deeplearning4j', name: 'deeplearning4j-zoo', version: '1.0.0-beta7'
@@ -54,7 +50,11 @@ dependencies {
         implementation "org.nd4j:nd4j-cuda-${cuda_version}:${dl4j_version}"
         implementation "org.nd4j:nd4j-cuda-${cuda_version}-platform:${dl4j_version}"
     } else {
-        implementation "org.nd4j:nd4j-native-platform:${dl4j_version}"
+        if (dl4j_use_avx2 && (platform == 'win')){
+            implementation "org.nd4j:nd4j-native:${dl4j_version}"
+            implementation "org.nd4j:nd4j-native:${dl4j_version}:windows-x86_64-avx2"
+        }else
+            implementation "org.nd4j:nd4j-native-platform:${dl4j_version}"
     }
     implementation group: 'org.deeplearning4j', name: 'arbiter-ui', version: "${dl4j_version}"
     implementation group: 'org.datavec', name: 'datavec-data-codec', version: "${dl4j_version}"

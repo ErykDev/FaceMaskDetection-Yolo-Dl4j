@@ -5,6 +5,8 @@ import org.bytedeco.opencv.opencv_core.*;
 import org.datavec.image.loader.NativeImageLoader;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.nn.layers.objdetect.DetectedObject;
+import org.deeplearning4j.nn.layers.objdetect.Yolo2OutputLayer;
+import org.fr4j.modelUtils.ModelUtils;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
 import org.slf4j.Logger;
@@ -18,11 +20,11 @@ import java.util.List;
 import static org.bytedeco.opencv.global.opencv_imgproc.*;
 
 
-public class Display implements Runnable {
-    private static final Logger log = LoggerFactory.getLogger(Display.class);
+public class DisplayCamTest implements Runnable {
+    private static final Logger log = LoggerFactory.getLogger(DisplayCamTest.class);
     private static final CanvasFrame frame = new CanvasFrame("Face Mask Detection");
 
-    public Display()
+    public DisplayCamTest()
     {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -33,10 +35,10 @@ public class Display implements Runnable {
         OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
         OpenCVFrameConverter.ToMat converter = new OpenCVFrameConverter.ToMat();
         NativeImageLoader imageLoader = new NativeImageLoader();
-        ImagePreProcessingScaler preProcessor = new ImagePreProcessingScaler(0, 1);
+        ImagePreProcessingScaler preProcessor = new ImagePreProcessingScaler();
 
         ComputationGraph model;
-        String modelFilename = "model.zip";
+        String modelFile = "model.zip";
         double detectionThreshold = 0.3;
         int gridWidth = 13;
         int gridHeight = 13;
@@ -47,16 +49,15 @@ public class Display implements Runnable {
         long lastTime;
         double fps = 0;
 
-
         int w = croppedWidth * 2;
         int h = croppedHeight * 2;
 
         try
         {
-            log.info("Load model...");
-            model = ComputationGraph.load(new File(modelFilename), true);
+            log.info("Loading model...");
+            model = ModelUtils.load(new File(modelFile));
 
-            org.deeplearning4j.nn.layers.objdetect.Yolo2OutputLayer yout = (org.deeplearning4j.nn.layers.objdetect.Yolo2OutputLayer)model.getOutputLayer(0);
+            Yolo2OutputLayer yout = (Yolo2OutputLayer)model.getOutputLayer(0);
             List<String> labels = Arrays.asList("mask", "no-mask");
             Scalar[] colormap = { Scalar.GREEN, Scalar.RED };
 
@@ -65,7 +66,6 @@ public class Display implements Runnable {
             grabber.start();
 
             while (frame.isVisible()) {
-
                 cvimg = grabber.grab();
                 //BufferedImage image;
                 if (cvimg != null) {
@@ -120,7 +120,7 @@ public class Display implements Runnable {
 
     public static void main(String... args)
     {
-        Display webcam = new Display();
+        DisplayCamTest webcam = new DisplayCamTest();
         webcam.start();
     }
 

@@ -24,5 +24,7 @@ hs_err_pid*
 .gradle/
 .idea/
 build/
+data/test/
+data/train/
 /src/main/java/org/fr4j/DataRecorder.java
 model.zip
