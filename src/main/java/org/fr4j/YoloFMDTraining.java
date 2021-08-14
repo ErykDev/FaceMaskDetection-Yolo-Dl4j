@@ -41,8 +41,8 @@ public class YoloFMDTraining {
         int gridHeight = 13;
 
         // parameters for the training phase
-        int batchSize = 2;
-        int nEpochs = 220;
+        int batchSize = 3;
+        int nEpochs = 320;
 
         Random rng = new Random();
 

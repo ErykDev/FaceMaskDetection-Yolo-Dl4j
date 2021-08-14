@@ -2,6 +2,7 @@ package org.fr4j.component;
 
 import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.nn.graph.ComputationGraph;
+import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.springframework.stereotype.Component;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.model.stats.StatsListener;
@@ -32,7 +33,7 @@ public class UIServerComponent {
             if (currentNetwork != null)
                 currentNetwork.getListeners().remove(statsListener);
             if (multiLayerNetwork != null)
-                multiLayerNetwork.addListeners(statsListener);
+                multiLayerNetwork.addListeners(statsListener, new ScoreIterationListener(131));
 
             currentNetwork = multiLayerNetwork;
             System.gc();
