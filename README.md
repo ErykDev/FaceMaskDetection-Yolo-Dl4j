@@ -6,7 +6,7 @@ Dl4J Implementation of Tiny-Yolov2
 (click for full video)
 
 
-[![Watch the video](https://i.ibb.co/PFX33NV/index.gif)](https://youtu.be/CMewb5FUtt4)
+[![Watch the video](/imgs/index.gif)](https://youtu.be/CMewb5FUtt4)
 
 
 ### How to run
